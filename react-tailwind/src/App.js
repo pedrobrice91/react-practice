@@ -1,25 +1,28 @@
-//import logo from './logo.svg';
-import './App.css';
-import Card from './componets/Card';
+import React from "react";
+import SearchTodos from "./componets/SearchTodos";
+import TodosList from "./componets/TodosList";
+import TodoCount from "./componets/TodoCount";
+import TodoItem from "./componets/TodoItem";
+import Button from "./componets/Button";
 
 function App() {
+  const defaultTodos = [
+    { text: "limpiar la casa", completed: false },
+    { text: "ordenar el cuarto", completed: false },
+    { text: "limpiar los zapatos", completed: false },
+  ]
   return (
     <div className="App">
-      <header className="App-header">
-        <img /* src={logo} */ className="App-logo" alt="logo" />
-        <p>
-          Edit <code>src/App.js</code> and save to reload.
-        </p>
-        <Card/>
-        <a
-          className="App-link"
-          href="https://reactjs.org"
-          target="_blank"
-          rel="noopener noreferrer"
-        >
-          Learn React
-        </a>
-      </header>
+      <TodoCount one={12} two={25} />
+      <SearchTodos />
+      <TodosList>
+        {defaultTodos.map((todos, ind) => {
+          return (
+            <TodoItem key={ind} text={todos.text}/>
+          )
+        })}
+      </TodosList>
+      <Button />
     </div>
   );
 }
