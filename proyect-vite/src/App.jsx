@@ -1,5 +1,6 @@
 import "bootstrap/dist/css/bootstrap.css";
 import Carta from "./components/Carta.jsx";
+import Title from "./components/Title.jsx";
 
 function App() {
   let data = [
@@ -40,8 +41,10 @@ function App() {
   return (
     <div>
       <div className="container-fluid">
-        <h1 className="">holaa</h1>
+        <h1 className="">holaa estoy desde el APP</h1>
         <div className="row">{mapa}</div>
+        <hr/>
+       <Title />
       </div>
     </div>
   );
