@@ -9,6 +9,7 @@ function App() {
     { text: "limpiar la casa", completed: false },
     { text: "ordenar el cuarto", completed: false },
     { text: "limpiar los zapatos", completed: false },
+    { text: "limpiar los zapatos", completed: false }
   ]
   return (
     <div className="App">

@@ -10,11 +10,10 @@ const TodoItem = (props) => {
               {props.texto}
             </span>
             <button className="ml-3 p-1 text-gray-400 hover:text-red-500 transition-colors opacity-0 group-hover:opacity-100">
-
+              {/* <Trash2 size={16} /> */}
             </button>
           </div>
         </li>
-
         {/* <li className="px-4 py-8 text-center text-gray-500">
           No hay tareas pendientes
         </li> */}
