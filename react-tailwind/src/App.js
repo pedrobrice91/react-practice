@@ -1,9 +1,8 @@
-import React from "react";
 import SearchTodos from "./componets/SearchTodos";
 import TodosList from "./componets/TodosList";
 import TodoCount from "./componets/TodoCount";
 import TodoItem from "./componets/TodoItem";
-import Button from "./componets/Button";
+import Footer from "./componets/Footer";
 
 function App() {
   const defaultTodos = [
@@ -13,16 +12,18 @@ function App() {
   ]
   return (
     <div className="App">
-      <TodoCount one={12} two={25} />
-      <SearchTodos />
-      <TodosList>
-        {defaultTodos.map((todos, ind) => {
-          return (
-            <TodoItem key={ind} text={todos.text}/>
-          )
-        })}
-      </TodosList>
-      <Button />
+      <div className="max-w-md mx-auto mt-8 p-6 bg-white rounded-lg shadow-lg">
+        <TodoCount />
+        <SearchTodos />
+        <TodosList>
+          {defaultTodos.map((elem, ind) => {
+            return (
+              <TodoItem key={ind} texto={elem.text} />
+            )
+          })}
+        </TodosList>
+        <Footer one={12} two={25} />
+      </div>
     </div>
   );
 }
