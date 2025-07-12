@@ -13,11 +13,15 @@ const TodoItem = (props) => {
                   ? "bg-green-500 border-green-500 text-white"
                   : "border-gray-300 hover:border-green-400"
               }`}
+              onClick={props.onComplete}
             >
               {props.completado && <FaCheck size={14} />}
             </button>
             <span className="flex-1 text-gray-800">{props.texto}</span>
-            <button className="ml-3 p-1 text-gray-400 hover:text-red-500 transition-colors opacity-0 group-hover:opacity-100">
+            <button 
+            className="ml-3 p-1 text-gray-400 hover:text-red-500 transition-colors opacity-0 group-hover:opacity-100"
+            onClick={props.onDelete}  
+            >
               <FaRegTrashAlt size={16} />
             </button>
           </div>

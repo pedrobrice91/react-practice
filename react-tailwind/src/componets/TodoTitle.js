@@ -1,5 +1,4 @@
-
-export default function TodoCount() {
+export default function TodoTitle() {
   return (
     <div className="todo-count">
       <h1 className="text-2xl font-bold text-gray-800 mb-6 text-center">
