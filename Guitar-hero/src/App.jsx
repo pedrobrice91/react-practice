@@ -1,8 +1,18 @@
+import { useState, useEffect } from 'react'
+
 import './App.css'
 import Header from './Components/Header'
 import Guitar from './Components/Guitar'
-function App() {
+import {db} from '../src/data/db'
 
+function App() {
+const datos = db;
+
+const [data, setData] = useState([])
+
+useEffect(()=>{
+setData(datos)
+}, [])
 
   return (
     <>
@@ -10,12 +20,9 @@ function App() {
       <main className="container-xl mt-5">
         <h2 className="text-center">Nuestra Colección</h2>
         <div className="row mt-5">
-          <Guitar />
-          <Guitar />
-          <Guitar />
-          <Guitar />
-          <Guitar />
-          <Guitar />
+          {data.map((elem, id)=>{
+            return <Guitar nombre={elem.name} imagen={elem.image} descri={elem.description} precio={elem.price}/>
+          })}
         </div>
       </main>
       <footer className="bg-dark mt-5 py-5">
