@@ -4,6 +4,7 @@ import TodoTitle from "./componets/TodoTitle";
 import TodoItem from "./componets/TodoItem";
 import Footer from "./componets/Footer";
 import React from "react";
+import Headers from "./componets/Headers";
 
 function App() {
   const defaultTodos = [
@@ -29,26 +30,27 @@ function App() {
     return elem.text.toLowerCase().includes(SearchValue.toLowerCase());
   });
 
-  const taskReady = (txt) =>{
-    const newTodos = [...coutItem]
+  const taskReady = (txt) => {
+    const newTodos = [...coutItem];
     const todoIndex = newTodos.findIndex((elem) => {
-      return elem.text === txt
-    })
+      return elem.text === txt;
+    });
     newTodos[todoIndex].completed = true;
-    return setCounItem(newTodos)
-  }
+    return setCounItem(newTodos);
+  };
 
-  const taskDelete = (txt) =>{
-    const newTodos = [...coutItem]
+  const taskDelete = (txt) => {
+    const newTodos = [...coutItem];
     const todoIndex = newTodos.findIndex((elem) => {
-      return elem.text === txt
-    })
-    newTodos.splice(todoIndex, 1)
-    return setCounItem(newTodos)
-  }
+      return elem.text === txt;
+    });
+    newTodos.splice(todoIndex, 1);
+    return setCounItem(newTodos);
+  };
 
   return (
     <div className="App">
+      <Headers />
       <div className="max-w-md mx-auto mt-8 p-6 bg-white rounded-lg shadow-lg">
         <TodoTitle />
         <SearchTodos
