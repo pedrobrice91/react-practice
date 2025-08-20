@@ -1,8 +1,4 @@
-export default function Header({card}) {
-  const nombre = "ppero";
-
-  const addtocards = card
-
+export default function Header() {
   return (
     <>
       <header className="py-5 header">
@@ -24,7 +20,6 @@ export default function Header({card}) {
                   src="img/carrito.png"
                   alt="imagen carrito"
                 />
-
                 <div id="carrito" className="bg-white p-3">
                   <p className="text-center">El carrito esta vacio</p>
                   <table className="w-100 table">
@@ -42,17 +37,16 @@ export default function Header({card}) {
                         <td>
                           <img
                             className="img-fluid"
-                            src="img/guitarra_02.jpg"
+                            /* src={`img/${}.jpg`} */
                             alt="imagen guitarra"
                           />
                         </td>
-                        <td>{card.name}</td>
-                        <td className="fw-bold">$299</td>
+                        <td></td>
+                        <td className="fw-bold"></td>
                         <td className="flex align-items-start gap-4">
                           <button type="button" className="btn btn-dark">
                             -
                           </button>
-                          1
                           <button type="button" className="btn btn-dark">
                             +
                           </button>
@@ -65,9 +59,8 @@ export default function Header({card}) {
                       </tr>
                     </tbody>
                   </table>
-
                   <p className="text-end">
-                    Total pagar: <span className="fw-bold">$899</span>
+                    Total pagar: <span className="fw-bold"></span>
                   </p>
                   <button className="btn btn-dark w-100 mt-3 p-2">
                     Vaciar Carrito

@@ -1,4 +1,4 @@
-export default function Guitar({ guitar, addToCard }) {
+export default function Guitar({ guitar}) {
   return (
     <>
       <div className="col-md-6 col-lg-4 my-4 row align-items-center">
@@ -18,7 +18,6 @@ export default function Guitar({ guitar, addToCard }) {
           <button
             type="button"
             className="btn btn-dark w-100"
-            onClick={() => addToCard(guitar)}
           >
             Agregar al Carrito
           </button>
