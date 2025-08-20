@@ -1,7 +1,7 @@
 const TodosList = (props) => {
   return (
     <div className="todos-list">
-      <ul>{props.children}</ul>
+      <ul></ul>
     </div>
   );
 };

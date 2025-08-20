@@ -9,20 +9,22 @@ import {
 } from "@headlessui/react";
 import { Bars3Icon, BellIcon, XMarkIcon } from "@heroicons/react/24/outline";
 
-export default function Headers() {
+export default function Headers(props) {
   const navigation = [
     { name: "Dashboard", href: "#", current: true },
     { name: "Team", href: "#", current: false },
     { name: "Projects", href: "#", current: false },
     { name: "Calendar", href: "#", current: false },
   ];
+ const {defaultTodos, name} = props
+
+ console.log(defaultTodos[0])
 
   function classNames(...classes) {
     return classes.filter(Boolean).join(" ");
   }
   return (
     <div>
-      <button className="mr-3 w-5 h-5 rounded border-2 flex items-center justify-center transition-colors"></button>
       <Disclosure as="nav" className="relative bg-gray-800">
         <div className="mx-auto max-w-7xl px-2 sm:px-6 lg:px-8">
           <div className="relative flex h-16 items-center justify-between">
