@@ -10,12 +10,21 @@ function App() {
   const [cart, setCart] = useState([]);
 
   function addToCard(elem) {
-    setCart([...cart, elem]);
+    const itenSearch = cart.findIndex((item) => item.id == elem.id);
+    const updateCart = [...cart];
+
+    if (itenSearch >= 0) {
+      updateCart[itenSearch].acumula += 1;
+      setCart(updateCart);
+    } else {
+      elem.acumula = 1;
+      setCart([...cart, elem]);
+    }
   }
 
   return (
     <>
-      <Header />
+      <Header cart={cart} />
       <main className="container-xl mt-5">
         <h2 className="text-center">{`Nuestra Colección`}</h2>
         <div className="row mt-5">

@@ -1,4 +1,6 @@
-export default function Header() {
+export default function Header({ cart}) {
+  
+  console.log(cart);
   return (
     <>
       <header className="py-5 header">
