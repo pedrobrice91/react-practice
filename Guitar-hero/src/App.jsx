@@ -6,14 +6,14 @@ import { db } from "../src/data/db";
 
 function App() {
   const datos = db;
-  const [list, setList] = useState(datos);
+  const [list] = useState(datos);
   const [cart, setCart] = useState([]);
 
-  function addToCard(elem) {
-    const itenSearch = cart.findIndex((item) => item.id == elem.id);
-    const updateCart = [...cart];
-
+  function addToCart(elem) {
+    const itenSearch = cart.findIndex((item) => item.id === elem.id);
     if (itenSearch >= 0) {
+      if (cart[itenSearch].acumula >= 4) return
+      const updateCart = [...cart]; 
       updateCart[itenSearch].acumula += 1;
       setCart(updateCart);
     } else {
@@ -22,14 +22,47 @@ function App() {
     }
   }
 
+  const deleteItem = (dato) => {
+    setCart(cart.filter((elemmm) => elemmm.id !== dato.id));
+  };
+
+  const aumentarCart = (dato) => {
+    setCart(
+      cart.map((elemento) =>
+        elemento.id === dato.id && elemento.acumula < 4
+          ? { ...elemento, acumula: elemento.acumula + 1 }
+          : elemento
+      )
+    );
+  };
+
+  const disminuirCart = (dato) => {
+    setCart(
+      cart.map((element) =>
+        element.id === dato.id && element.acumula > 1
+          ? { ...element, acumula: element.acumula - 1 }
+          : element
+      )
+    );
+  };
+
+  const limpiarCart = function(){
+    setCart([])
+  }
   return (
     <>
-      <Header cart={cart} />
+      <Header
+        cart={cart}
+        deleteItem={deleteItem}
+        aumentarCart={aumentarCart}
+        disminuirCart={disminuirCart}
+        limpiarCart={limpiarCart}
+      />
       <main className="container-xl mt-5">
         <h2 className="text-center">{`Nuestra Colección`}</h2>
         <div className="row mt-5">
           {list.map((guitar, id) => (
-            <Guitar key={id} guitar={guitar} addToCard={addToCard} />
+            <Guitar key={id} guitar={guitar} addToCart={addToCart} />
           ))}
         </div>
       </main>

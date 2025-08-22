@@ -1,6 +1,12 @@
-export default function Header({ cart}) {
-  
-  console.log(cart);
+export default function Header({ cart, deleteItem, aumentarCart, disminuirCart, limpiarCart }) {
+  // state derivado
+  const isEmpi = cart.length === 0;
+
+  const sumatoria = cart.reduce(
+    (total, element) => total + element.price * element.acumula,
+    0
+  );
+
   return (
     <>
       <header className="py-5 header">
@@ -23,48 +29,62 @@ export default function Header({ cart}) {
                   alt="imagen carrito"
                 />
                 <div id="carrito" className="bg-white p-3">
-                  <p className="text-center">El carrito esta vacio</p>
-                  <table className="w-100 table">
-                    <thead>
-                      <tr>
-                        <th>Imagen</th>
-                        <th>Nombre</th>
-                        <th>Precio</th>
-                        <th>Cantidad</th>
-                        <th></th>
-                      </tr>
-                    </thead>
-                    <tbody>
-                      <tr>
-                        <td>
-                          <img
-                            className="img-fluid"
-                            /* src={`img/${}.jpg`} */
-                            alt="imagen guitarra"
-                          />
-                        </td>
-                        <td></td>
-                        <td className="fw-bold"></td>
-                        <td className="flex align-items-start gap-4">
-                          <button type="button" className="btn btn-dark">
-                            -
-                          </button>
-                          <button type="button" className="btn btn-dark">
-                            +
-                          </button>
-                        </td>
-                        <td>
-                          <button className="btn btn-danger" type="button">
-                            X
-                          </button>
-                        </td>
-                      </tr>
-                    </tbody>
-                  </table>
-                  <p className="text-end">
-                    Total pagar: <span className="fw-bold"></span>
-                  </p>
-                  <button className="btn btn-dark w-100 mt-3 p-2">
+                  {isEmpi ? (
+                    <p className="text-center">El carrito esta vacio</p>
+                  ) : (
+                    <>
+                      <table className="w-100 table">
+                        <thead>
+                          <tr>
+                            <th>Imagen</th>
+                            <th>Nombre</th>
+                            <th>Precio</th>
+                            <th>Cantidad</th>
+                            <th></th>
+                          </tr>
+                        </thead>
+                        <tbody>
+                          {cart.map((guitar, id) => (
+                            <tr key={id}>
+                              <td>
+                                <img
+                                  className="img-fluid"
+                                  src={`/img/${guitar.image}.jpg`}
+                                  alt="imagen guitarra"
+                                />
+                              </td>
+                              <td>{guitar.name}</td>
+                              <td className="fw-bold">{guitar.price}</td>
+                              <td className="flex align-items-start gap-4">
+                                <button type="button" className="btn btn-dark" onClick={()=>disminuirCart(guitar)}>
+                                  -
+                                </button>
+                                {guitar.acumula}
+                                <button type="button" className="btn btn-dark" onClick={()=>aumentarCart(guitar)}>
+                                  +
+                                </button>
+                              </td>
+                              <td>
+                                <button
+                                  className="btn btn-danger"
+                                  type="button"
+                                  onClick={() => deleteItem(guitar)}
+                                >
+                                  X
+                                </button>
+                              </td>
+                            </tr>
+                          ))}
+                        </tbody>
+                      </table>
+                      <p className="text-end">
+                        Total pagar:{" "}
+                        <span className="fw-bold">{sumatoria}</span>
+                      </p>
+                    </>
+                  )}
+
+                  <button className="btn btn-dark w-100 mt-3 p-2" onClick={limpiarCart} >
                     Vaciar Carrito
                   </button>
                 </div>
