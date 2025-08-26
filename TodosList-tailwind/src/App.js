@@ -17,18 +17,15 @@ function App() {
   const [SearchValue, setSearchValue] = useState("");
   const [coutItem, setCounItem] = useState(defaultTodos);
 
-  console.log('aqui')
-  console.log(coutItem)
-
   return (
     <div className="App">
       <div className="max-w-md mx-auto mt-8 p-6 bg-white rounded-lg shadow-lg">
         <TodoTitle />
         <SearchTodos />
-        {coutItem.map((todaLista, id) => (
-          <TodoItem key={id} todaLista={todaLista} />
+        {coutItem.map((todoList, id) => (
+          <TodoItem key={id} todoList={todoList} />
         ))}
-        <Footer />
+        <Footer coutItem={coutItem} />
       </div>
     </div>
   );
