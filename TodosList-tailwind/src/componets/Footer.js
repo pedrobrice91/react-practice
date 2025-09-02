@@ -1,12 +1,15 @@
-export default function Footer({text, completed}) {
-  console.log(completed);
-
-
+export default function Footer({
+  totalCount,
+  completedCount,
+  pendinTodosCount,
+}) {
   return (
     <div>
       <div className="mt-4 text-sm text-gray-600 text-center">
-        Total: {} | Completadas: {} |{" "}
-        {/*  === 0 ? "Ya las completaste todas!" : `Pendientes: ${}` */}
+        Total: {totalCount} | Completadas: {completedCount} |
+        {completedCount === 0
+          ? "Ya las completaste todas!"
+          : ` Pendientes: ${pendinTodosCount}`}
       </div>
     </div>
   );

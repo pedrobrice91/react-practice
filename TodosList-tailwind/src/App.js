@@ -5,7 +5,7 @@ import Footer from "./componets/Footer";
 import { useState } from "react";
 
 function App() {
-  const defaultTodos = [
+  const initialTodoList = [
     { text: "limpiar la casa", completed: false },
     { text: "ORdenar el cuarto", completed: false },
     { text: "pintar el cuarto", completed: false },
@@ -14,18 +14,60 @@ function App() {
     { text: "limpiar los zapatos", completed: true },
     { text: "comprar zapatos", completed: true },
   ];
-  const [SearchValue, setSearchValue] = useState("");
-  const [coutItem, setCounItem] = useState(defaultTodos);
+
+  const [searchQuery, setSearchQuery] = useState("");
+  const [todoList, setTodoList] = useState(initialTodoList);
+  const [newTodoText, setNewTodoText] = useState("");
+
+  const handleSearchSubmit = () => {
+    console.log("Búsqueda enviada");
+  };
+
+  const handleSearchInputChange = (event) => {
+    const inputValue = event.target.value;
+    setSearchQuery(event.target.value);
+  };
+
+  // Contador total de todos
+  const totalTodosCount = todoList.length;
+
+  // Contador de todos
+  const completedTodosCount = todoList.filter((todo) => {
+    return todo.completed === true;
+  }).length;
+
+  const pendinTodosCount = todoList.filter((todo) => {
+    return todo.completed === false;
+  }).length;
+
+  // Lista filtrada por búsqueda
+  const filteredTodosBySearch = todoList.filter((todo) => {
+    return todo.text.toLowerCase().includes(searchQuery.toLowerCase());
+  });
 
   return (
     <div className="App">
       <div className="max-w-md mx-auto mt-8 p-6 bg-white rounded-lg shadow-lg">
         <TodoTitle />
-        <SearchTodos />
-        {coutItem.map((todoList, id) => (
-          <TodoItem key={id} todoList={todoList} />
+        <SearchTodos
+          onSearchSubmit={handleSearchSubmit}
+          onSearchChange={handleSearchInputChange}
+          searchQuery={searchQuery}
+        />
+        {filteredTodosBySearch.map((todoList, index) => (
+          <TodoItem
+            key={index}
+            todoList={todoList}
+            /*  onToggleComplete={/* función para manejar completar }
+            onDelete={} */
+          />
         ))}
-        <Footer coutItem={coutItem} />
+        <Footer
+          todoList={todoList}
+          totalCount={totalTodosCount}
+          completedCount={completedTodosCount}
+          pendinTodosCount={pendinTodosCount}
+        />
       </div>
     </div>
   );
