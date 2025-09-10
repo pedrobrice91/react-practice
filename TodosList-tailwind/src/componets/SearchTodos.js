@@ -14,6 +14,11 @@ export default function SearchTodos({
         onChange={(event) => {
           onSearchChange(event);
         }}
+        onKeyDown={(event) =>{
+          if (event.key === 'Enter'){
+          onSearchSubmit();
+        }
+      }}
         value={searchQuery}
       />
       <button

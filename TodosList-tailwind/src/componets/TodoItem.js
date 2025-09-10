@@ -1,7 +1,7 @@
 import { FaRegTrashAlt } from "react-icons/fa";
 import { FaCheck } from "react-icons/fa";
 
-const TodoItem = ({ todoList }) => {
+const TodoItem = ({ todoList, onClicklist, onClickDelete }) => {
   return (
     <div className="todos-list">
       <ul className="bg-white border border-gray-200 rounded-lg shadow-sm overflow-hidden">
@@ -14,11 +14,15 @@ const TodoItem = ({ todoList }) => {
                   ? "bg-green-500 border-green-500 text-white"
                   : "border-gray-300 hover:border-green-400"
               }`}
+              onClick={()=> {onClicklist(todoList)}}
             >
               {todoList.completed && <FaCheck size={14} />}
             </button>
             <span className="flex-1 text-gray-800">{todoList.text}</span>{" "}
-            <button className="ml-3 p-1 text-gray-400 hover:text-red-500 transition-colors opacity-0 group-hover:opacity-100">
+            <button className="ml-3 p-1 text-gray-400 hover:text-red-500 transition-colors opacity-0 group-hover:opacity-100"
+            onClick={()=> {onClickDelete(todoList)}}
+            >
+            
               <FaRegTrashAlt size={16} />
             </button>
           </div>

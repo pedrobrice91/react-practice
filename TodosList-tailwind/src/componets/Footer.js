@@ -6,10 +6,10 @@ export default function Footer({
   return (
     <div>
       <div className="mt-4 text-sm text-gray-600 text-center">
-        Total: {totalCount} | Completadas: {completedCount} |
-        {completedCount === 0
-          ? "Ya las completaste todas!"
-          : ` Pendientes: ${pendinTodosCount}`}
+        Total: {totalCount} | {
+        pendinTodosCount === 0
+          ? " Ya las completaste todas! "
+          : `Completadas: ${completedCount} | Pendientes: ${pendinTodosCount}`}
       </div>
     </div>
   );
